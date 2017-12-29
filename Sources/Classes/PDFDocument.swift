@@ -196,7 +196,6 @@ public struct PDFDocument {
         
         // Scale the context so that the PDF page is rendered at the correct size for the zoom level.
         context.scaleBy(x: pdfScale, y: pdfScale)
-        print("page number: \(pageNumber)")
         context.drawPDFPage(page)
         context.restoreGState()
         

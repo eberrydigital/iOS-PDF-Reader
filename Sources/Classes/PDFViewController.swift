@@ -156,8 +156,7 @@ public final class PDFViewController: UIViewController {
     }
 
     deinit {
-//        CGPDFDocumentRelease(document.coreDocument)
-        Swift.print("PDFViewController deinit called")
+        document.images.removeAllObjects()
     }
     
     public override func viewDidLayoutSubviews() {
