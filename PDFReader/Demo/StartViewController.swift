@@ -65,7 +65,7 @@ internal final class StartViewController: UIViewController {
     /// Add `thumbnailsEnabled:false` to `createNew` to not load the thumbnails in the controller.
     private func showDocument(_ document: PDFDocument) {
         let image = UIImage(named: "")
-        let controller = PDFViewController.createNew(with: document, title: "", actionButtonImage: image, actionStyle: .activitySheet)
+        let controller = PDFViewController.createNew(with: document, title: "", actionButtonImage: image, actionStyle: .none)
         navigationController?.pushViewController(controller, animated: true)
     }
 

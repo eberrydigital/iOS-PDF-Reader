@@ -37,15 +37,21 @@ extension PDFViewController {
         } else {
             controller.currentPageIndex = 0
         }
-        
+
         controller.backButton = backButton
-        
-        if let actionButtonImage = actionButtonImage {
-            controller.actionButton = UIBarButtonItem(image: actionButtonImage, style: .plain, target: controller, action: #selector(actionButtonPressed))
-        } else {
-            controller.actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: controller, action: #selector(actionButtonPressed))
-        }
         controller.isThumbnailsEnabled = isThumbnailsEnabled
+
+        switch actionStyle {
+        case .none:
+            break
+        default:
+            if let actionButtonImage = actionButtonImage {
+                controller.actionButton = UIBarButtonItem(image: actionButtonImage, style: .plain, target: controller, action: #selector(actionButtonPressed))
+            } else {
+                controller.actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: controller, action: #selector(actionButtonPressed))
+            }
+        }
+
         return controller
     }
 }
@@ -62,6 +68,9 @@ public final class PDFViewController: UIViewController {
         
         /// Performs a custom action
         case customAction(() -> ())
+
+        /// Remove Action button
+        case none
     }
     
     /// Collection veiw where all the pdf pages are rendered
@@ -193,6 +202,8 @@ public final class PDFViewController: UIViewController {
             presentActivitySheet()
         case .customAction(let customAction):
             customAction()
+        case .none:
+            return
         }
     }
     
