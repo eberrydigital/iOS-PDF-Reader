@@ -154,6 +154,11 @@ public final class PDFViewController: UIViewController {
         let width = min(thumbnailWidth, view.bounds.width)
         thumbnailCollectionControllerWidth.constant = width
     }
+
+    deinit {
+//        CGPDFDocumentRelease(document.coreDocument)
+        Swift.print("PDFViewController deinit called")
+    }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
